@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Shafe Shop</string>
+    <string name="admob_app_id">ca-app-pub-3010116707756112~8768216892</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="banner_ad_unit_id">ca-app-pub-3010116707756112/5943754764</string>
+    <string name="admob_interstitial_id">ca-app-pub-3010116707756112/5375766796</string>
+    <string name="native_ad_unit_id">ca-app-pub-7198125470693821/1208980998</string>
+    <string name="video_ad_unit_id">ca-app-pub-9293781822145407/7087315744</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+</resources>
