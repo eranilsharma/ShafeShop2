@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.vlonjatg.progressactivity.ProgressActivity xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_follow_web_view"
     android:layout_width="match_parent"
@@ -9,7 +8,7 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/allwebview"></WebView>
+        android:id="@+id/allwebview"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"

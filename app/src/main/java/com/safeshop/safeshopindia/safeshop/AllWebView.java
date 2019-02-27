@@ -19,8 +19,7 @@ public class AllWebView extends AppCompatActivity {
     WebView myWebView;
     ProgressActivity progressActivity;
     protected static String url4load;
-    InterstitialAd mInterstitialAd;
-    private InterstitialAd interstitial;
+
 
     public static void LoadWebView(Context mContext, String loadURL) {
         url4load = loadURL;
@@ -36,20 +35,7 @@ public class AllWebView extends AppCompatActivity {
         myWebView = (WebView) findViewById(R.id.allwebview);
         progressActivity = (ProgressActivity) findViewById(R.id.activity_follow_web_view);
         progressActivity.showLoading();
-        AdRequest adRequest = new AdRequest.Builder().build();
-        // Prepare the Interstitial Ad
-        interstitial = new InterstitialAd(AllWebView.this);
-// Insert the Ad Unit ID
-        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
 
-        interstitial.loadAd(adRequest);
-// Prepare an Interstitial Ad Listener
-        interstitial.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                // Call displayInterstitial() function
-                displayInterstitial();
-            }
-        });
         myWebView.setWebViewClient(new WebViewClient() {
 
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
@@ -73,12 +59,7 @@ public class AllWebView extends AppCompatActivity {
 
     }
 
-    public void displayInterstitial() {
-// If Ads are loaded, show Interstitial else show nothing.
-        if (interstitial.isLoaded()) {
-            interstitial.show();
-        }
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

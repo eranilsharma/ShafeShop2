@@ -1,5 +1,6 @@
 package com.safeshop.safeshopindia.safeshop;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     WebView myWebView;
     ProgressActivity progressActivity;
-
+    private InterstitialAd interstitial;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,30 @@ public class MainActivity extends AppCompatActivity
         myWebView= findViewById(R.id.home_webview);
         setSupportActionBar(toolbar);
         progressActivity.showLoading();
+        AdRequest adRequest = new AdRequest.Builder().build();
+        // Prepare the Interstitial Ad
+        interstitial = new InterstitialAd(MainActivity.this);
+// Insert the Ad Unit ID
+        interstitial.setAdUnitId(getString(R.string.admob_interstitial_id));
 
+        interstitial.loadAd(adRequest);
+// Prepare an Interstitial Ad Listener
+        interstitial.setAdListener(new AdListener() {
+            public void onAdLoaded() {
+                // Call displayInterstitial() function
+                SharedPreferences preferences = getSharedPreferences("progress", MODE_PRIVATE);
+                int appUsedCount = preferences.getInt("appUsedCount", 0);
+                appUsedCount++;
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putInt("appUsedCount", appUsedCount);
+                editor.apply();
+
+                if (appUsedCount==1 || appUsedCount%10 == 0) {
+                    displayInterstitial();
+                    }
+
+            }
+        });
         myWebView.setWebViewClient(new WebViewClient() {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
@@ -86,7 +110,12 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
+    public void displayInterstitial() {
+// If Ads are loaded, show Interstitial else show nothing.
+        if (interstitial.isLoaded()) {
+            interstitial.show();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -121,9 +150,9 @@ public class MainActivity extends AppCompatActivity
             AllWebView.LoadWebView(MainActivity.this, "https://www.facebook.com");
         } else if (id == R.id.nav_manage) {
             AllWebView.LoadWebView(MainActivity.this, "https://www.facebook.com");
-        } else if (id == R.id.nav_view) {
-            AllWebView.LoadWebView(MainActivity.this, "https://www.facebook.com");
         } else if (id == R.id.nav_slideshow) {
+            AllWebView.LoadWebView(MainActivity.this, "https://www.facebook.com");
+        }else if (id == R.id.nav_manage2) {
             AllWebView.LoadWebView(MainActivity.this, "https://www.facebook.com");
         }
 
